@@ -1,12 +1,10 @@
 package ru.volkov.practice3.model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Type;
-
 import java.util.UUID;
 
 @Entity
-@Table(name = "CB_Office")
+@Table(name = "db_office")
 public class Office {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -1,16 +1,14 @@
 package ru.volkov.practice3.model;
 
-
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
-@Table(name = "db_client")
-public class Client {
+@Table(name = "db_stuff")
+public class Stuff {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
     private UUID id;
 
     @Column(name = "surname")
@@ -28,37 +26,26 @@ public class Client {
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    @Column(name = "inn")
-    private String inn;
+    @Column(name = "salary_multiplier")
+    private Double salaryMultiplier;
 
-    @Column(name = "passport_serial")
-    private String passportSerial;
+    @ManyToOne(targetEntity = Position.class, optional = false)
+    @JoinColumn(name = "position_id")
+    private Position position;
 
-    @Column(name = "phone")
-    private String phone;
+    public Stuff() {
+    }
 
-    public Client(final UUID id,
-                  final String surname,
-                  final String name,
-                  final String patronymic,
-                  final Boolean sex,
-                  final LocalDate birthDate,
-                  final String inn,
-                  final String passportSerial,
-                  final String phone) {
+    public Stuff(UUID id, String surname, String name, String patronymic, Boolean sex,
+                 LocalDate birthDate, Double salaryMultiplier, Position position) {
         this.id = id;
         this.surname = surname;
         this.name = name;
         this.patronymic = patronymic;
         this.sex = sex;
         this.birthDate = birthDate;
-        this.inn = inn;
-        this.passportSerial = passportSerial;
-        this.phone = phone;
-    }
-
-    public Client() {
-
+        this.salaryMultiplier = salaryMultiplier;
+        this.position = position;
     }
 
     public UUID getId() {
@@ -109,43 +96,20 @@ public class Client {
         this.birthDate = birthDate;
     }
 
-    public String getInn() {
-        return inn;
+    public Double getSalaryMultiplier() {
+        return salaryMultiplier;
     }
 
-    public void setInn(String inn) {
-        this.inn = inn;
+    public void setSalaryMultiplier(Double salaryMultiplier) {
+        this.salaryMultiplier = salaryMultiplier;
     }
 
-    public String getPassportSerial() {
-        return passportSerial;
+    public Position getPosition() {
+        return position;
     }
 
-    public void setPassportSerial(String passportSerial) {
-        this.passportSerial = passportSerial;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    @Override
-    public String toString() {
-        return "Client{" +
-                "id=" + id +
-                ", surname='" + surname + '\'' +
-                ", name='" + name + '\'' +
-                ", patronymic='" + patronymic + '\'' +
-                ", sex=" + sex +
-                ", birthDate=" + birthDate +
-                ", inn='" + inn + '\'' +
-                ", passportSerial='" + passportSerial + '\'' +
-                ", phone='" + phone + '\'' +
-                '}';
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     public static class Builder {
@@ -155,23 +119,22 @@ public class Client {
         private String patronymic;
         private Boolean sex;
         private LocalDate birthDate;
-        private String inn;
-        private String passportSerial;
-        private String phone;
+        private Double salaryMultiplier;
+        private Position position;
 
-        public Client build() {
-            Client client = new Client();
-            client.setId(id);
-            client.setSurname(surname);
-            client.setName(name);
-            client.setPatronymic(patronymic);
-            client.setPassportSerial(passportSerial);
-            client.setSex(sex);
-            client.setBirthDate(birthDate);
-            client.setInn(inn);
-            client.setPhone(phone);
-            return client;
+        public Stuff build() {
+            Stuff stuff = new Stuff();
+            stuff.setId(id);
+            stuff.setSurname(surname);
+            stuff.setName(name);
+            stuff.setPatronymic(patronymic);
+            stuff.setSex(sex);
+            stuff.setPosition(position);
+            stuff.setSalaryMultiplier(salaryMultiplier);
+            stuff.setBirthDate(birthDate);
+            return stuff;
         }
+
         public Builder setId(UUID id) {
             this.id = id;
             return this;
@@ -202,24 +165,14 @@ public class Client {
             return this;
         }
 
-        public Builder setInn(String inn) {
-            this.inn = inn;
+        public Builder setSalaryMultiplier(Double salaryMultiplier) {
+            this.salaryMultiplier = salaryMultiplier;
             return this;
         }
 
-        public Builder setPassportSerial(String passportSerial) {
-            this.passportSerial = passportSerial;
+        public Builder setPosition(Position position) {
+            this.position = position;
             return this;
         }
-
-        public Builder setPhone(String phone) {
-            this.phone = phone;
-            return this;
-        }
-
-
     }
-
-
-
 }
