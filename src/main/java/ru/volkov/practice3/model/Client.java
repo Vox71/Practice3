@@ -9,7 +9,6 @@ import java.util.UUID;
 @Table(name = "db_client")
 public class Client {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private UUID id;
 

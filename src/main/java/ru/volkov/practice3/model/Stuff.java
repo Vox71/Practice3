@@ -1,6 +1,7 @@
 package ru.volkov.practice3.model;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -8,7 +9,7 @@ import java.util.UUID;
 @Table(name = "db_stuff")
 public class Stuff {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
     private UUID id;
 
     @Column(name = "surname")

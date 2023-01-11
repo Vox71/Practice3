@@ -5,10 +5,10 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
-@Table(name = "cw6_offer")
+@Table(name = "db_offer")
 public class Offer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
     private UUID id;
 
     @Column(name = "serial_number")

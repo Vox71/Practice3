@@ -7,7 +7,7 @@ import java.util.UUID;
 @Table(name = "db_office")
 public class Office {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
     private UUID id;
 
     @Column(name = "address")
