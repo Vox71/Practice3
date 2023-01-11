@@ -33,15 +33,15 @@ public class OfferStatisticServiceImpl implements OfferStatisticService {
         Map<String, Integer> clientStatistic = new HashMap<>();
         Map<String, Integer> stuffStatistic = new HashMap<>();
         offers.forEach(offer -> {
-            if (clientStatistic.containsKey(offer.getClient().getSurname())) {
-                clientStatistic.compute(offer.getClient().getSurname(), (k, v) -> v + 1);
+            if (clientStatistic.containsKey(offer.getClient().getClass())) {
+                clientStatistic.compute(String.valueOf(offer.getClient().getClass()), (k, v) -> v + 1);
             } else {
-                clientStatistic.put(offer.getClient().getSurname(), 1);
+                clientStatistic.put(String.valueOf(offer.getClient().getClass()), 1);
             }
-            if (stuffStatistic.containsKey(offer.getStuff().getSurname())) {
-                stuffStatistic.compute(offer.getStuff().getSurname(), (k, v) -> v + 1);
+            if (stuffStatistic.containsKey(offer.getStuff().getClass())) {
+                stuffStatistic.compute(String.valueOf(offer.getStuff().getClass()), (k, v) -> v + 1);
             } else {
-                stuffStatistic.put(offer.getStuff().getSurname(), 1);
+                stuffStatistic.put(String.valueOf(offer.getStuff().getClass()), 1);
             }
         });
         statisticBuilder.setStuffStatistics(stuffStatistic);

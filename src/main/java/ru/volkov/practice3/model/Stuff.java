@@ -30,15 +30,14 @@ public class Stuff {
     @Column(name = "salary_multiplier")
     private Double salaryMultiplier;
 
-    @ManyToOne(targetEntity = Position.class, optional = false)
-    @JoinColumn(name = "position_id")
-    private Position position;
+    @Column(name = "position_id")
+    private UUID position;
 
     public Stuff() {
     }
 
     public Stuff(UUID id, String surname, String name, String patronymic, Boolean sex,
-                 LocalDate birthDate, Double salaryMultiplier, Position position) {
+                 LocalDate birthDate, Double salaryMultiplier, UUID position) {
         this.id = id;
         this.surname = surname;
         this.name = name;
@@ -105,11 +104,11 @@ public class Stuff {
         this.salaryMultiplier = salaryMultiplier;
     }
 
-    public Position getPosition() {
+    public UUID getPosition() {
         return position;
     }
 
-    public void setPosition(Position position) {
+    public void setPosition(UUID position) {
         this.position = position;
     }
 
@@ -121,7 +120,7 @@ public class Stuff {
         private Boolean sex;
         private LocalDate birthDate;
         private Double salaryMultiplier;
-        private Position position;
+        private UUID position;
 
         public Stuff build() {
             Stuff stuff = new Stuff();
@@ -171,7 +170,7 @@ public class Stuff {
             return this;
         }
 
-        public Builder setPosition(Position position) {
+        public Builder setPosition(UUID position) {
             this.position = position;
             return this;
         }

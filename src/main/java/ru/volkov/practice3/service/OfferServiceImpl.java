@@ -2,9 +2,7 @@ package ru.volkov.practice3.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.volkov.practice3.model.Client;
 import ru.volkov.practice3.model.Offer;
-import ru.volkov.practice3.model.Stuff;
 import ru.volkov.practice3.repository.OfferRepository;
 import ru.volkov.practice3.repository.OfficeRepository;
 
@@ -12,7 +10,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @Service
-public class OfferServiceImpl implements OfferService {
+public abstract class OfferServiceImpl implements OfferService {
 
     private final OfficeRepository officeRepository;
 
@@ -28,7 +26,7 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
-    public Offer signNewOffer(LocalDate startDate, LocalDate endingDate, Client client, Stuff stuff) {
+    public Offer signNewOffer(LocalDate startDate, LocalDate endingDate, UUID client, UUID stuff) {
         Offer newOffer = new Offer.Builder()
                 .setId(UUID.randomUUID())
                 .setSerialNumber(serialNumberGenerator.generateSerialNumber())
@@ -39,7 +37,7 @@ public class OfferServiceImpl implements OfferService {
                 .setEndingDate(endingDate)
                 .setOffice(officeRepository
                         .findById(UUID.fromString("a68062fe-bac2-4408-af87-85ebd882d7a4"))
-                        .orElseThrow())
+                        .orElseThrow().getId())
                 .build();
         return offerRepository.save(newOffer);
     }

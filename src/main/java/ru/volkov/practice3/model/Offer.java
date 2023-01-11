@@ -23,23 +23,20 @@ public class Offer {
     @Column(name = "start_date")
     private LocalDate startDate;
 
-    @ManyToOne(targetEntity = Client.class, optional = false)
-    @JoinColumn(name = "client_id")
-    private Client client;
+    @Column(name = "client_id")
+    private UUID client;
 
-    @ManyToOne(targetEntity = Office.class, optional = false)
-    @JoinColumn(name = "office_id")
-    private Office office;
+    @Column(name = "office_id")
+    private UUID office;
 
-    @ManyToOne(targetEntity = Stuff.class, optional = false)
-    @JoinColumn(name = "stuff_id")
-    private Stuff stuff;
+    @Column(name = "stuff_id")
+    private UUID stuff;
 
     public Offer() {
     }
 
     public Offer(UUID id, String serialNumber, LocalDate signDate, LocalDate endingDate,
-                 LocalDate startDate, Client client, Office office, Stuff stuff) {
+                 LocalDate startDate, UUID client, UUID office, UUID stuff) {
         this.id = id;
         this.serialNumber = serialNumber;
         this.signDate = signDate;
@@ -90,27 +87,27 @@ public class Offer {
         this.startDate = startDate;
     }
 
-    public Client getClient() {
+    public UUID getClient() {
         return client;
     }
 
-    public void setClient(Client client) {
+    public void setClient(UUID client) {
         this.client = client;
     }
 
-    public Office getOffice() {
+    public UUID getOffice() {
         return office;
     }
 
-    public void setOffice(Office office) {
+    public void setOffice(UUID office) {
         this.office = office;
     }
 
-    public Stuff getStuff() {
+    public UUID getStuff() {
         return stuff;
     }
 
-    public void setStuff(Stuff stuff) {
+    public void setStuff(UUID stuff) {
         this.stuff = stuff;
     }
 
@@ -134,9 +131,9 @@ public class Offer {
         private LocalDate signDate;
         private LocalDate endingDate;
         private LocalDate startDate;
-        private Client client;
-        private Office office;
-        private Stuff stuff;
+        private UUID client;
+        private UUID office;
+        private UUID stuff;
 
         public Offer build() {
             Offer offer = new Offer();
@@ -176,17 +173,17 @@ public class Offer {
             return this;
         }
 
-        public Builder setClient(Client client) {
+        public Builder setClient(UUID client) {
             this.client = client;
             return this;
         }
 
-        public Builder setOffice(Office office) {
+        public Builder setOffice(UUID office) {
             this.office = office;
             return this;
         }
 
-        public Builder setStuff(Stuff stuff) {
+        public Builder setStuff(UUID stuff) {
             this.stuff = stuff;
             return this;
         }
