@@ -1,6 +1,7 @@
 package ru.volkov.practice3.model;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -9,31 +10,40 @@ import java.util.UUID;
 @Table(name = "db_client")
 public class Client {
     @Id
+    @JsonProperty("id")
     @Column(name = "ID")
     private UUID id;
 
+    @JsonProperty("surname")
     @Column(name = "surname")
     private String surname;
 
     @Column(name = "name")
+    @JsonProperty("name")
     private String name;
 
     @Column(name = "patronymic")
+    @JsonProperty("patronymic")
     private String patronymic;
 
     @Column(name = "sex")
+    @JsonProperty("sex")
     private Boolean sex;
 
     @Column(name = "birth_date")
+    @JsonProperty("birth_date")
     private LocalDate birthDate;
 
     @Column(name = "inn")
+    @JsonProperty("inn")
     private String inn;
 
     @Column(name = "passport_serial")
+    @JsonProperty("passport_serial")
     private String passportSerial;
 
     @Column(name = "phone")
+    @JsonProperty("phone")
     private String phone;
 
     public Client(final UUID id,
@@ -60,6 +70,7 @@ public class Client {
 
     }
 
+    @JsonProperty("id")
     public UUID getId() {
         return id;
     }
@@ -68,6 +79,7 @@ public class Client {
         this.id = id;
     }
 
+    @JsonProperty("surname")
     public String getSurname() {
         return surname;
     }
@@ -76,6 +88,7 @@ public class Client {
         this.surname = surname;
     }
 
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -84,6 +97,7 @@ public class Client {
         this.name = name;
     }
 
+    @JsonProperty("patronymic")
     public String getPatronymic() {
         return patronymic;
     }
@@ -92,6 +106,7 @@ public class Client {
         this.patronymic = patronymic;
     }
 
+    @JsonProperty("sex")
     public Boolean getSex() {
         return sex;
     }
@@ -100,6 +115,7 @@ public class Client {
         this.sex = sex;
     }
 
+    @JsonProperty("birth_date")
     public LocalDate getBirthDate() {
         return birthDate;
     }
@@ -108,6 +124,7 @@ public class Client {
         this.birthDate = birthDate;
     }
 
+    @JsonProperty("inn")
     public String getInn() {
         return inn;
     }
@@ -116,6 +133,7 @@ public class Client {
         this.inn = inn;
     }
 
+    @JsonProperty("passport_serial")
     public String getPassportSerial() {
         return passportSerial;
     }
@@ -124,6 +142,7 @@ public class Client {
         this.passportSerial = passportSerial;
     }
 
+    @JsonProperty("phone")
     public String getPhone() {
         return phone;
     }

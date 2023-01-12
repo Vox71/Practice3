@@ -1,5 +1,6 @@
 package ru.volkov.practice3.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import java.util.UUID;
 
@@ -7,15 +8,19 @@ import java.util.UUID;
 @Table(name = "db_office")
 public class Office {
     @Id
+    @JsonProperty("id")
     @Column(name = "ID")
     private UUID id;
 
+    @JsonProperty("address")
     @Column(name = "address")
     private String address;
 
+    @JsonProperty("law_address")
     @Column(name = "law_address")
     private String lawAddress;
 
+    @JsonProperty("cabinets_count")
     @Column(name = "cabinets_count")
     private Integer cabinetsCount;
 
@@ -29,6 +34,7 @@ public class Office {
         this.cabinetsCount = cabinetsCount;
     }
 
+    @JsonProperty("id")
     public UUID getId() {
         return id;
     }
@@ -37,14 +43,16 @@ public class Office {
         this.id = id;
     }
 
+    @JsonProperty("address")
     public String getAddress() {
         return address;
     }
 
+
     public void setAddress(String address) {
         this.address = address;
     }
-
+    @JsonProperty("law_address")
     public String getLawAddress() {
         return lawAddress;
     }
@@ -53,6 +61,7 @@ public class Office {
         this.lawAddress = lawAddress;
     }
 
+    @JsonProperty("cabinets_count")
     public Integer getCabinetsCount() {
         return cabinetsCount;
     }

@@ -8,12 +8,15 @@ import java.util.UUID;
 @Table(name = "db_position")
 public class Position {
     @Id
+    @JsonProperty("id")
     @Column(name = "ID")
     private UUID id;
 
+    @JsonProperty("name")
     @Column(name = "name")
     private String name;
 
+    @JsonProperty("salary")
     @Column(name = "salary")
     private Integer salary;
 

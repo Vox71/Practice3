@@ -1,5 +1,6 @@
 package ru.volkov.practice3.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -9,28 +10,36 @@ import java.util.UUID;
 @Table(name = "db_stuff")
 public class Stuff {
     @Id
+    @JsonProperty("id")
     @Column(name = "ID")
     private UUID id;
 
     @Column(name = "surname")
+    @JsonProperty("surname")
     private String surname;
 
     @Column(name = "name")
+    @JsonProperty("name")
     private String name;
 
     @Column(name = "patronymic")
+    @JsonProperty("patronymic")
     private String patronymic;
 
     @Column(name = "sex")
+    @JsonProperty("sex")
     private Boolean sex;
 
     @Column(name = "birth_date")
+    @JsonProperty("birth_date")
     private LocalDate birthDate;
 
     @Column(name = "salary_multiplier")
+    @JsonProperty("salary_multiplier")
     private Double salaryMultiplier;
 
     @ManyToOne(targetEntity = Position.class, optional = false)
+    @JsonProperty("position")
     @JoinColumn(name = "position_id")
     private Position position;
 
@@ -49,6 +58,7 @@ public class Stuff {
         this.position = position;
     }
 
+    @JsonProperty("id")
     public UUID getId() {
         return id;
     }
@@ -57,6 +67,7 @@ public class Stuff {
         this.id = id;
     }
 
+    @JsonProperty("surname")
     public String getSurname() {
         return surname;
     }
@@ -65,6 +76,7 @@ public class Stuff {
         this.surname = surname;
     }
 
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -72,15 +84,17 @@ public class Stuff {
     public void setName(String name) {
         this.name = name;
     }
-
+    @JsonProperty("patronymic")
     public String getPatronymic() {
         return patronymic;
     }
+
 
     public void setPatronymic(String patronymic) {
         this.patronymic = patronymic;
     }
 
+    @JsonProperty("sex")
     public Boolean getSex() {
         return sex;
     }
@@ -89,6 +103,7 @@ public class Stuff {
         this.sex = sex;
     }
 
+    @JsonProperty("birth_date")
     public LocalDate getBirthDate() {
         return birthDate;
     }
@@ -97,6 +112,7 @@ public class Stuff {
         this.birthDate = birthDate;
     }
 
+    @JsonProperty("salary_multiplier")
     public Double getSalaryMultiplier() {
         return salaryMultiplier;
     }
@@ -105,6 +121,7 @@ public class Stuff {
         this.salaryMultiplier = salaryMultiplier;
     }
 
+    @JsonProperty("position")
     public Position getPosition() {
         return position;
     }
@@ -130,9 +147,9 @@ public class Stuff {
             stuff.setName(name);
             stuff.setPatronymic(patronymic);
             stuff.setSex(sex);
-            stuff.setPosition(position);
-            stuff.setSalaryMultiplier(salaryMultiplier);
             stuff.setBirthDate(birthDate);
+            stuff.setSalaryMultiplier(salaryMultiplier);
+            stuff.setPosition(position);
             return stuff;
         }
 

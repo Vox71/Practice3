@@ -1,5 +1,6 @@
 package ru.volkov.practice3.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -8,29 +9,37 @@ import java.util.UUID;
 @Table(name = "db_offer")
 public class Offer {
     @Id
+    @JsonProperty("id")
     @Column(name = "ID")
     private UUID id;
 
+    @JsonProperty("serial_number")
     @Column(name = "serial_number")
     private String serialNumber;
 
+    @JsonProperty("sign_date")
     @Column(name = "sign_date")
     private LocalDate signDate;
 
+    @JsonProperty("ending_date")
     @Column(name = "ending_date")
     private LocalDate endingDate;
 
+    @JsonProperty("start_date")
     @Column(name = "start_date")
     private LocalDate startDate;
 
+    @JsonProperty("client")
     @ManyToOne(targetEntity = Client.class, optional = false)
     @JoinColumn(name = "client_id")
     private Client client;
 
+    @JsonProperty("office")
     @ManyToOne(targetEntity = Office.class, optional = false)
     @JoinColumn(name = "office_id")
     private Office office;
 
+    @JsonProperty("stuff")
     @ManyToOne(targetEntity = Stuff.class, optional = false)
     @JoinColumn(name = "stuff_id")
     private Stuff stuff;
@@ -50,6 +59,7 @@ public class Offer {
         this.stuff = stuff;
     }
 
+    @JsonProperty("id")
     public UUID getId() {
         return id;
     }
@@ -58,6 +68,7 @@ public class Offer {
         this.id = id;
     }
 
+    @JsonProperty("serial_number")
     public String getSerialNumber() {
         return serialNumber;
     }
@@ -66,6 +77,7 @@ public class Offer {
         this.serialNumber = serialNumber;
     }
 
+    @JsonProperty("sign_date")
     public LocalDate getSignDate() {
         return signDate;
     }
@@ -82,6 +94,7 @@ public class Offer {
         this.endingDate = endingDate;
     }
 
+    @JsonProperty("start_date")
     public LocalDate getStartDate() {
         return startDate;
     }
@@ -90,6 +103,7 @@ public class Offer {
         this.startDate = startDate;
     }
 
+    @JsonProperty("client")
     public Client getClient() {
         return client;
     }
@@ -98,6 +112,7 @@ public class Offer {
         this.client = client;
     }
 
+    @JsonProperty("office")
     public Office getOffice() {
         return office;
     }
@@ -106,6 +121,7 @@ public class Offer {
         this.office = office;
     }
 
+    @JsonProperty("stuff")
     public Stuff getStuff() {
         return stuff;
     }
